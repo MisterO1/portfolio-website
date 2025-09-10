@@ -2,16 +2,13 @@ import { ChevronDown } from "lucide-react"
 import Hero from "@/components/hero"
 import About from "@/components/about"
 import Projects from "@/components/projects"
-// import Services from "@/components/services"
-// import Testimonials from "@/components/testimonials"
-// import Blog from "@/components/blog"
 import Contact from "@/components/contact"
 import Footer from "@/components/footer"
 
 export default function Home() {
   
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen">
       <Hero />
 
       <div className="flex justify-center my-8">
@@ -22,11 +19,8 @@ export default function Home() {
 
       <About />
       <Projects />
-      {/* <Services /> */}
-      {/* <Testimonials /> */}
-      {/* <Blog /> */}
       <Contact />
       <Footer />
-    </main>
+    </div>
   )
 }

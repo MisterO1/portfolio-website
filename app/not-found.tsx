@@ -33,25 +33,25 @@ export default function NotFound() {
   // Don't render animations until client-side
   if (!isMounted) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-jungle-gradient relative overflow-hidden">
+      <div className="min-h-screen flex items-center justify-center bg-sky-gradient relative overflow-hidden">
         <div className="container relative z-10">
-          <div className="max-w-md mx-auto bg-white/10 backdrop-blur-md p-8 rounded-lg border border-jungle-300/20 shadow-xl">
+          <div className="max-w-md mx-auto bg-white/10 backdrop-blur-md p-8 rounded-lg border border-sky-300/20 shadow-xl">
             <div className="text-center">
               <div className="flex justify-center mb-6">
                 <img
                   src="/images/dev.png"
-                  alt="Stephen Kihuni - Lost in the Django Jungle"
+                  alt="Olivier Kouassi - Lost in the Django sky"
                   className="w-32 h-32 object-contain"
                 />
               </div>
               <h1 className="text-6xl font-bold text-white mb-2">404</h1>
-              <h2 className="text-2xl font-semibold text-jungle-200 mb-4">Lost in the Django Jungle</h2>
+              <h2 className="text-2xl font-semibold text-sky-200 mb-4">Lost ?</h2>
               <p className="text-slate-200 mb-8">
-                Oops! It seems you've wandered off the path. This page doesn't exist in our jungle.
+                Oops! It seems you've wandered off the path. This page doesn't exist in our Universe😁.
               </p>
-              <Button asChild className="bg-jungle-600 hover:bg-jungle-700 text-white">
+              <Button asChild className="bg-sky-600 hover:bg-sky-700 text-white">
                 <Link href="/">
-                  <Leaf className="mr-2 h-4 w-4" /> Return to Base Camp
+                  <Leaf className="mr-2 h-4 w-4" /> Return to my portfolio 👈🏽
                 </Link>
               </Button>
             </div>
@@ -62,18 +62,18 @@ export default function NotFound() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-jungle-gradient relative overflow-hidden">
-      {/* Jungle background */}
+    <div className="min-h-screen flex items-center justify-center bg-sky-gradient relative overflow-hidden">
+      {/* sky background */}
       <div
         className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-30"
-        style={{ backgroundImage: `url('/images/django-jungle.png')` }}
+        style={{ backgroundImage: `url('/images/next-sky.jpg')` }}
       />
 
       {/* Floating leaves - only rendered client-side */}
       {Array.from({ length: 10 }).map((_, i) => (
         <motion.div
           key={i}
-          className="absolute text-jungle-300 opacity-30 z-10"
+          className="absolute text-sky-300 opacity-30 z-10"
           initial={{
             x: Math.random() * dimensions.width,
             y: -20,
@@ -97,7 +97,7 @@ export default function NotFound() {
       ))}
 
       <div className="container relative z-10">
-        <div className="max-w-md mx-auto bg-white/10 backdrop-blur-md p-8 rounded-lg border border-jungle-300/20 shadow-xl">
+        <div className="max-w-md mx-auto bg-white/10 backdrop-blur-md p-8 rounded-lg border border-sky-300/20 shadow-xl">
           <div className="text-center">
             <motion.div
               className="flex justify-center mb-6"
@@ -106,20 +106,20 @@ export default function NotFound() {
             >
               <img
                 src="/images/dev.png"
-                alt="Stephen Kihuni - Lost in the Django Jungle"
+                alt="Stephen Kihuni - Lost in the Django sky"
                 className="w-32 h-32 object-contain"
               />
             </motion.div>
 
             <h1 className="text-6xl font-bold text-white mb-2">404</h1>
-            <h2 className="text-2xl font-semibold text-jungle-200 mb-4">Lost in the Django Jungle</h2>
+            <h2 className="text-2xl font-semibold text-sky-200 mb-4">Bad news !</h2>
             <p className="text-slate-200 mb-8">
-              Oops! It seems you've wandered off the path. This page doesn't exist in our jungle.
+              Oops! It seems you've wandered off the path. This page doesn't exist.
             </p>
 
-            <Button asChild className="bg-jungle-600 hover:bg-jungle-700 text-white">
+            <Button asChild className="bg-sky-600 hover:bg-sky-700 text-white">
               <Link href="/">
-                <Leaf className="mr-2 h-4 w-4" /> Return to Base Camp
+                <Leaf className="mr-2 h-4 w-4" /> Return to my portfolio
               </Link>
             </Button>
           </div>
