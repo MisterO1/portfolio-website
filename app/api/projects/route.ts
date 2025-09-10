@@ -32,7 +32,6 @@ export async function GET() {
       return NextResponse.json({ error: 'Failed to fetch projects', details: t }, { status: 502 })
     }
     const json = await res.json()
-    console.log('json',json)
     // Parse returns { results: [...] }
     return NextResponse.json(json.results || [])
   } catch (e: any) {

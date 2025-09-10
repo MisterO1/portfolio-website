@@ -18,7 +18,6 @@ export default function Projects() {
       try {
         const res = await fetch('/api/projects', { cache: 'no-store' })
         const data = await res.json()
-        console.log('data',data)
         if (!res.ok) throw new Error(data?.error || 'Failed to fetch projects')
         if (!isMounted) return
         setProjects(Array.isArray(data) ? data : [])

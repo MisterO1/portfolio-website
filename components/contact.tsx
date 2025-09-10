@@ -54,7 +54,7 @@ export default function Contact() {
           <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
             Have a project in mind or want to discuss how I can help your business? Let's talk!
           </p>
-          <div className="h-1 w-20 bg-emerald-500 mx-auto mt-4"></div>
+          <div className="h-1 w-20 bg-sky-500 mx-auto mt-4"></div>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -70,8 +70,8 @@ export default function Contact() {
 
                 <div className="space-y-6">
                   <div className="flex items-center gap-4">
-                    <div className="bg-emerald-100 dark:bg-emerald-900/30 p-3 rounded-full">
-                      <Mail className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />
+                    <div className="bg-sky-100 dark:bg-sky-900/30 p-3 rounded-full">
+                      <Mail className="h-6 w-6 text-sky-600 dark:text-sky-400" />
                     </div>
                     <div>
                       <p className="text-sm text-slate-500 dark:text-slate-400">Email</p>
@@ -145,6 +145,7 @@ export default function Contact() {
                         onChange={handleChange}
                         placeholder="Your name"
                         required
+                        autoComplete="given-name"
                         className="bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700"
                       />
                     </div>
@@ -164,6 +165,7 @@ export default function Contact() {
                         onChange={handleChange}
                         placeholder="your.email@example.com"
                         required
+                        autoComplete="off"
                         className="bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700"
                       />
                     </div>
@@ -188,7 +190,7 @@ export default function Contact() {
 
                     <Button
                       type="submit"
-                      className="w-full bg-emerald-600 hover:bg-emerald-700 text-white"
+                      className="w-full bg-sky-600 hover:bg-sky-700 text-white"
                       disabled={isSubmitting}
                     >
                       {isSubmitting ? "Sending..." : "Send Message"}
