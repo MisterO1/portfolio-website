@@ -60,7 +60,7 @@ export default function About() {
                 transition={{ duration: 10, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
               >
                 <img
-                  src="/images/kihuni.png"
+                  src="/images/dev.png"
                   alt="Olivier Kouassi - Frontend Developer"
                   className="w-full h-full object-contain p-4"
                 />

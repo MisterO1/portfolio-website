@@ -90,7 +90,7 @@ export default function Hero() {
               whileHover={{ scale: 1.05 }}
             >
               <img
-                src="/images/kihuni.png"
+                src="/images/dev.png"
                 alt="Olivier KOUASSI - Frontend Developer"
                 className="w-full h-full object-contain drop-shadow-xl"
               />

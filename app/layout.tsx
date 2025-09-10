@@ -10,7 +10,7 @@ export const metadata = {
   title: "Frontend Developer | Olivier KOUASSI",
   description: "Frontend Developer specializing in Next & React & tailwindCSS",
   icons: {
-    icon: [{ url: "/images/kihuni.png" }],
+    icon: [{ url: "/images/dev.png" }],
   },
 }
 
