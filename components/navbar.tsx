@@ -5,19 +5,19 @@ import { Button } from "@/components/ui/button"
 import ThemeToggle from "@/components/theme-toggle"
 import { Menu, X, Leaf } from "lucide-react"
 import { useMobile } from "@/hooks/use-mobile"
+import { useI18n } from "@/locales/client"
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const t = useI18n()
   const isMobile = useMobile()
 
   const navItems = [
-    { name: "Home", href: "#" },
-    { name: "About", href: "#about" },
-    { name: "Projects", href: "#projects" },
-    // { name: "Services", href: "#services" },
-    // { name: "Blog", href: "#blog" },
-    { name: "Contact", href: "#contact" },
+    { name: "home", href: "#" },
+    { name: "about", href: "#about" },
+    { name: "projects", href: "#projects" },
+    { name: "contact", href: "#contact" },
   ]
 
   useEffect(() => {
@@ -64,7 +64,7 @@ export default function Navbar() {
                   onClick={() => scrollToSection(item.href)}
                   className={`${ isScrolled ? "text-slate-600" : "text-white"} dark:text-slate-300 dark:hover:text-white`}
                 >
-                  {item.name}
+                  {t('navbar.'+item.name, {count:1})}
                 </Button>
               ))}
               <ThemeToggle isScrolled={isScrolled}/>
@@ -96,7 +96,7 @@ export default function Navbar() {
                 onClick={() => scrollToSection(item.href)}
                 className="w-full justify-start text-lg py-4 text-slate-800 dark:text-white"
               >
-                {item.name}
+                {t('navbar.'+item.name, {count:1})}
               </Button>
             ))}
           </nav>

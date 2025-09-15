@@ -6,8 +6,10 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { ExternalLink, Github, Leaf } from "lucide-react"
 import { useEffect, useState } from "react"
+import { useI18n } from "@/locales/client"
 
 export default function Projects() {
+  const t = useI18n()
   const [projects, setProjects] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -18,12 +20,12 @@ export default function Projects() {
       try {
         const res = await fetch('/api/projects', { cache: 'no-store' })
         const data = await res.json()
-        if (!res.ok) throw new Error(data?.error || 'Failed to fetch projects')
+        if (!res.ok) throw new Error(data?.error || t('projects.error_fetch', { count: 1 }))
         if (!isMounted) return
         setProjects(Array.isArray(data) ? data : [])
       } catch (e: any) {
         if (!isMounted) return
-        setError(e?.message || 'Unexpected error')
+        setError(e?.message || t('projects.error_unexpected', { count: 1 }))
       } finally {
         if (isMounted) setLoading(false)
       }
@@ -44,11 +46,11 @@ export default function Projects() {
         >
           <h2 className="text-3xl md:text-4xl font-bold text-slate-800 dark:text-white mb-4 flex items-center justify-center gap-2">
             <Leaf className="h-6 w-6 text-sky-500 dark:text-sky-400" />
-            Projects
+            {t('projects.heading', { count: 1 })}
             <Leaf className="h-6 w-6 text-sky-500 dark:text-sky-400" />
           </h2>
           <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
-            A showcase of my backend development work, featuring Django REST APIs and related technologies.
+            {t('projects.intro', { count: 1 })}
           </p>
           <div className="h-1 w-20 bg-sky-500 mx-auto mt-4"></div>
         </motion.div>
@@ -57,7 +59,7 @@ export default function Projects() {
           <p className="text-red-600 text-center mb-6">{error}</p>
         )}
         {loading ? (
-          <p className="text-center text-slate-600 dark:text-slate-300">Chargement des projets...</p>
+          <p className="text-center text-slate-600 dark:text-slate-300">{t('projects.loading', { count: 1 })}</p>
         ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project: any, index: number) => (
@@ -78,7 +80,7 @@ export default function Projects() {
                   <div className="absolute inset-0 bg-gradient-to-t from-sky-900/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
                 <CardHeader>
-                  <CardTitle className="text-xl text-slate-800 dark:text-white">{(project.title as string) || 'Untitled Project'}</CardTitle>
+                  <CardTitle className="text-xl text-slate-800 dark:text-white">{(project.title as string) || t('projects.untitled', { count: 1 })}</CardTitle>
                   <div className="flex flex-wrap gap-2 mt-2">
                     {(project.techStack || []).map((tech: string, i: number) => (
                       <Badge
@@ -93,26 +95,26 @@ export default function Projects() {
                 </CardHeader>
                 <CardContent className="flex-grow">
                   <CardDescription className="text-slate-600 dark:text-slate-300 text-base">
-                    {(project.description as string) || 'No description provided.'}
+                    {(project.description as string) || t('projects.no_description', { count: 1 })}
                   </CardDescription>
                 </CardContent>
                 <CardFooter className="flex gap-2 pt-2">
                   <Button variant="outline" size="sm" asChild className="border-sky-200 dark:border-sky-700">
                     <a href={(project.github as string) || '#'} target="_blank" rel="noopener noreferrer">
-                      <Github className="h-4 w-4 mr-1" /> GitHub
+                      <Github className="h-4 w-4 mr-1" /> {t('projects.github', { count: 1 })}
                     </a>
                   </Button>
                   {project.demo && (
                     <Button variant="outline" size="sm" asChild className="border-sky-200 dark:border-sky-700">
                       <a href={(project.demo as string)} target="_blank" rel="noopener noreferrer">
-                        <ExternalLink className="h-4 w-4 mr-1" /> Demo
+                        <ExternalLink className="h-4 w-4 mr-1" /> {t('projects.demo', { count: 1 })}
                       </a>
                     </Button>
                   )}
                   {project.video && (
                     <Button variant="outline" size="sm" asChild className="border-sky-200 dark:border-sky-700">
                       <a href={(project.video as string)} target="_blank" rel="noopener noreferrer">
-                        Video
+                        {t('projects.video', { count: 1 })}
                       </a>
                     </Button>
                   )}

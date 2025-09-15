@@ -4,8 +4,10 @@ import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
 import { useState, useEffect } from "react"
 import { Leaf } from "lucide-react"
+import { useI18n } from "@/locales/client"
 
 export default function Hero() {
+  const t = useI18n()
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [isMounted, setIsMounted] = useState(false)
   const [dimensions, setDimensions] = useState({ width: 1200, height: 800 })
@@ -103,12 +105,12 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.3 }}
           >
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 drop-shadow-lg">
-              Frontend Developer specializing in
-              <span className="text-sky-300"> NextJs & React & TailwindCSS</span>
+              {t('hero.title_prefix', { count: 1 })}
+              <span className="text-sky-300">{t('hero.title_stack', { count: 1 })}</span>
             </h1>
 
             <p className="text-xl md:text-2xl text-slate-200 max-w-3xl mx-auto mb-8 drop-shadow">
-              I craft modern, responsive, and performant web applications with a focus on user experience and developer maintainability.
+              {t('hero.subtitle', { count: 1 })}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -117,7 +119,7 @@ export default function Hero() {
                 onClick={scrollToContact}
                 className="bg-sky-500 hover:bg-sky-700 text-white border-2 border-sky-500"
               >
-                Hire Me
+                {t('hero.cta_hire', { count: 1 })}
               </Button>
               <Button
                 size="lg"
@@ -125,7 +127,7 @@ export default function Hero() {
                 onClick={scrollToProjects}
                 className="border-2 border-sky-300 text-foreground"
               >
-                View Projects
+                {t('hero.cta_projects', { count: 1 })}
               </Button>
             </div>
           </motion.div>

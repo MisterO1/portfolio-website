@@ -4,41 +4,39 @@ import { motion } from "framer-motion"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Database, Lock, Server, Settings, Workflow, Leaf } from "lucide-react"
+import { useI18n } from "@/locales/client"
 
 export default function Services() {
+  const t = useI18n()
   const services = [
     {
-      title: "Django REST API Development",
-      description:
-        "Custom API development with Django REST Framework, following best practices for security, performance, and maintainability.",
+      title: t('services.items.django_api_title', { count: 1 }),
+      description: t('services.items.django_api_desc', { count: 1 }),
       icon: <Server className="h-10 w-10 text-sky-500" />,
     },
     {
-      title: "API Authentication (JWT/OAuth2)",
-      description: "Implement secure authentication systems using industry-standard protocols like JWT and OAuth2.",
+      title: t('services.items.auth_title', { count: 1 }),
+      description: t('services.items.auth_desc', { count: 1 }),
       icon: <Lock className="h-10 w-10 text-sky-500" />,
     },
     {
-      title: "Database Design & Optimization",
-      description:
-        "Design efficient database schemas and optimize queries for PostgreSQL, MySQL, and other database systems.",
+      title: t('services.items.db_title', { count: 1 }),
+      description: t('services.items.db_desc', { count: 1 }),
       icon: <Database className="h-10 w-10 text-sky-500" />,
     },
     {
-      title: "Dockerization & CI/CD Setup",
-      description:
-        "Containerize your applications with Docker and set up continuous integration and deployment pipelines.",
+      title: t('services.items.docker_title', { count: 1 }),
+      description: t('services.items.docker_desc', { count: 1 }),
       icon: <Workflow className="h-10 w-10 text-sky-500" />,
     },
     {
-      title: "Cloud Deployment",
-      description: "Deploy your applications to Heroku, AWS, or Render with proper configuration and monitoring.",
+      title: t('services.items.cloud_title', { count: 1 }),
+      description: t('services.items.cloud_desc', { count: 1 }),
       icon: <Server className="h-10 w-10 text-sky-500" />,
     },
     {
-      title: "Bug Fixing & Backend Refactoring",
-      description:
-        "Identify and fix bugs in existing systems, and refactor code for better performance and maintainability.",
+      title: t('services.items.bugfix_title', { count: 1 }),
+      description: t('services.items.bugfix_desc', { count: 1 }),
       icon: <Settings className="h-10 w-10 text-sky-500" />,
     },
   ]
@@ -84,11 +82,11 @@ export default function Services() {
         >
           <h2 className="text-3xl md:text-4xl font-bold text-slate-800 dark:text-white mb-4 flex items-center justify-center gap-2">
             <Leaf className="h-6 w-6 text-sky-500 dark:text-sky-400" />
-            Services Offered
+            {t('services.heading', { count: 1 })}
             <Leaf className="h-6 w-6 text-sky-500 dark:text-sky-400" />
           </h2>
           <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
-            Specialized backend development services to help your business build robust and scalable systems.
+            {t('services.intro', { count: 1 })}
           </p>
           <div className="h-1 w-20 bg-sky-500 mx-auto mt-4"></div>
         </motion.div>
@@ -125,7 +123,7 @@ export default function Services() {
           className="text-center mt-12"
         >
           <Button size="lg" onClick={scrollToContact} className="bg-sky-600 hover:bg-sky-700 text-white">
-            Let's Work Together
+            {t('services.cta', { count: 1 })}
           </Button>
         </motion.div>
       </div>

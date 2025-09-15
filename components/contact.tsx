@@ -10,8 +10,10 @@ import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent } from "@/components/ui/card"
 import { Github, Linkedin, Mail, FileText } from "lucide-react"
 import Link from "next/link"
+import { useI18n } from "@/locales/client"
 
 export default function Contact() {
+  const t = useI18n()
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -50,9 +52,9 @@ export default function Contact() {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-800 dark:text-white mb-4">Get In Touch</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-800 dark:text-white mb-4">{t('contact.heading', { count: 1 })}</h2>
           <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
-            Have a project in mind or want to discuss how I can help your business? Let's talk!
+            {t('contact.intro', { count: 1 })}
           </p>
           <div className="h-1 w-20 bg-sky-500 mx-auto mt-4"></div>
         </motion.div>
@@ -66,7 +68,7 @@ export default function Contact() {
           >
             <Card className="border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 h-full">
               <CardContent className="p-6">
-                <h3 className="text-2xl font-bold text-slate-800 dark:text-white mb-6">Contact Information</h3>
+                <h3 className="text-2xl font-bold text-slate-800 dark:text-white mb-6">{t('contact.info_heading', { count: 1 })}</h3>
 
                 <div className="space-y-6">
                   <div className="flex items-center gap-4">
@@ -74,13 +76,13 @@ export default function Contact() {
                       <Mail className="h-6 w-6 text-sky-600 dark:text-sky-400" />
                     </div>
                     <div>
-                      <p className="text-sm text-slate-500 dark:text-slate-400">Email</p>
+                      <p className="text-sm text-slate-500 dark:text-slate-400">{t('contact.email_label', { count: 1 })}</p>
                       <p className="text-slate-800 dark:text-white font-medium">kouassiolivier18@gmail.com</p>
                     </div>
                   </div>
 
                   <div className="pt-6 border-t border-slate-200 dark:border-slate-700">
-                    <h4 className="text-lg font-semibold text-slate-800 dark:text-white mb-4">Connect with me</h4>
+                    <h4 className="text-lg font-semibold text-slate-800 dark:text-white mb-4">{t('contact.connect_heading', { count: 1 })}</h4>
                     <div className="flex gap-4">
                       <Link
                         href="https://www.linkedin.com/in/olivier-kouassi-a5abb616a/"
@@ -120,13 +122,13 @@ export default function Contact() {
           >
             <Card className="border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900">
               <CardContent className="p-6">
-                <h3 className="text-2xl font-bold text-slate-800 dark:text-white mb-6">Send a Message</h3>
+                <h3 className="text-2xl font-bold text-slate-800 dark:text-white mb-6">{t('contact.form_heading', { count: 1 })}</h3>
 
                 {submitted ? (
                   <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-900 rounded-lg p-4 text-center">
-                    <h4 className="text-blue-800 dark:text-blue-400 font-medium text-lg mb-2">Message Sent!</h4>
+                    <h4 className="text-blue-800 dark:text-blue-400 font-medium text-lg mb-2">{t('contact.success_title', { count: 1 })}</h4>
                     <p className="text-blue-700 dark:text-blue-300">
-                      Thank you for reaching out. I'll get back to you as soon as possible.
+                      {t('contact.success_text', { count: 1 })}
                     </p>
                   </div>
                 ) : (
@@ -136,14 +138,14 @@ export default function Contact() {
                         htmlFor="name"
                         className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1"
                       >
-                        Name
+                        {t('contact.fields.name_label', { count: 1 })}
                       </label>
                       <Input
                         id="name"
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
-                        placeholder="Your name"
+                        placeholder={t('contact.fields.name_placeholder', { count: 1 })}
                         required
                         autoComplete="given-name"
                         className="bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700"
@@ -155,7 +157,7 @@ export default function Contact() {
                         htmlFor="email"
                         className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1"
                       >
-                        Email
+                        {t('contact.fields.email_label', { count: 1 })}
                       </label>
                       <Input
                         id="email"
@@ -163,7 +165,7 @@ export default function Contact() {
                         type="email"
                         value={formData.email}
                         onChange={handleChange}
-                        placeholder="your.email@example.com"
+                        placeholder={t('contact.fields.email_placeholder', { count: 1 })}
                         required
                         autoComplete="off"
                         className="bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700"
@@ -175,14 +177,14 @@ export default function Contact() {
                         htmlFor="message"
                         className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1"
                       >
-                        Message
+                        {t('contact.fields.message_label', { count: 1 })}
                       </label>
                       <Textarea
                         id="message"
                         name="message"
                         value={formData.message}
                         onChange={handleChange}
-                        placeholder="Tell me about your project..."
+                        placeholder={t('contact.fields.message_placeholder', { count: 1 })}
                         required
                         className="min-h-[150px] bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700"
                       />
@@ -193,7 +195,7 @@ export default function Contact() {
                       className="w-full bg-sky-600 hover:bg-sky-700 text-white"
                       disabled={isSubmitting}
                     >
-                      {isSubmitting ? "Sending..." : "Send Message"}
+                      {isSubmitting ? t('contact.sending', { count: 1 }) : t('contact.send', { count: 1 })}
                     </Button>
                   </form>
                 )}

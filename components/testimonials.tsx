@@ -4,31 +4,30 @@ import { motion } from "framer-motion"
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Star } from "lucide-react"
+import { useI18n } from "@/locales/client"
 
 export default function Testimonials() {
+  const t = useI18n()
   // Placeholder testimonials - these will be replaced with real ones as you gain clients
   const testimonials = [
     {
-      name: "Future Client",
-      role: "Tech Startup Founder",
-      content:
-        "This section will showcase feedback from satisfied clients who have worked with you. As you complete projects, you'll add real testimonials here.",
+      name: t('testimonials.future_client', { count: 1 }),
+      role: t('testimonials.role_founder', { count: 1 }),
+      content: t('testimonials.content_1', { count: 1 }),
       avatar: "FC",
       stars: 5,
     },
     {
-      name: "Future Client",
-      role: "Product Manager",
-      content:
-        "Client testimonials build trust and demonstrate your ability to deliver quality work. This placeholder will be replaced with actual client feedback.",
+      name: t('testimonials.future_client', { count: 1 }),
+      role: t('testimonials.role_pm', { count: 1 }),
+      content: t('testimonials.content_2', { count: 1 }),
       avatar: "FC",
       stars: 5,
     },
     {
-      name: "Future Client",
-      role: "CTO",
-      content:
-        "Screenshots of feedback, quotes from Upwork/Fiverr clients, or even short audio/video praise can be added here as you gain more experience.",
+      name: t('testimonials.future_client', { count: 1 }),
+      role: t('testimonials.role_cto', { count: 1 }),
+      content: t('testimonials.content_3', { count: 1 }),
       avatar: "FC",
       stars: 5,
     },
@@ -44,9 +43,9 @@ export default function Testimonials() {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-800 dark:text-white mb-4">Testimonials</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-800 dark:text-white mb-4">{t('testimonials.heading', { count: 1 })}</h2>
           <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
-            What clients say about working with me. This section will be updated as you complete projects.
+            {t('testimonials.intro', { count: 1 })}
           </p>
           <div className="h-1 w-20 bg-emerald-500 mx-auto mt-4"></div>
         </motion.div>

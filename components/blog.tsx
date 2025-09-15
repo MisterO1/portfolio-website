@@ -4,30 +4,30 @@ import { motion } from "framer-motion"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Calendar } from "lucide-react"
+import { useI18n } from "@/locales/client"
 
 export default function Blog() {
+  const t = useI18n()
   // Placeholder blog posts - these will be replaced with real ones as you create content
   const blogPosts = [
     {
-      title: "How I Built a Doctor Booking API With Django + JWT",
-      description:
-        "A detailed walkthrough of building a secure appointment booking system with Django REST Framework and JWT authentication.",
-      date: "Coming Soon",
+      title: t('blog.post_1_title', { count: 1 }),
+      description: t('blog.post_1_desc', { count: 1 }),
+      date: t('blog.coming_soon', { count: 1 }),
       image: "/placeholder.svg?height=200&width=400",
       link: "#",
     },
     {
-      title: "A Step-by-Step Guide to Deploying Django on Render With Docker",
-      description:
-        "Learn how to containerize your Django application and deploy it to Render with proper configuration and monitoring.",
-      date: "Coming Soon",
+      title: t('blog.post_2_title', { count: 1 }),
+      description: t('blog.post_2_desc', { count: 1 }),
+      date: t('blog.coming_soon', { count: 1 }),
       image: "/placeholder.svg?height=200&width=400",
       link: "#",
     },
     {
-      title: "My Experience Contributing to an Open Source API for Collaboration",
-      description: "Insights and lessons learned from contributing to open source projects in the Django ecosystem.",
-      date: "Coming Soon",
+      title: t('blog.post_3_title', { count: 1 }),
+      description: t('blog.post_3_desc', { count: 1 }),
+      date: t('blog.coming_soon', { count: 1 }),
       image: "/placeholder.svg?height=200&width=400",
       link: "#",
     },
@@ -43,9 +43,9 @@ export default function Blog() {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-800 dark:text-white mb-4">Blog & Case Studies</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-800 dark:text-white mb-4">{t('blog.heading', { count: 1 })}</h2>
           <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
-            Technical articles and case studies to share knowledge and demonstrate expertise.
+            {t('blog.intro', { count: 1 })}
           </p>
           <div className="h-1 w-20 bg-emerald-500 mx-auto mt-4"></div>
         </motion.div>
@@ -82,7 +82,7 @@ export default function Blog() {
                     asChild
                   >
                     <a href={post.link} className="flex items-center gap-1">
-                      Read more <ArrowRight className="h-4 w-4 ml-1" />
+                      {t('blog.read_more', { count: 1 })} <ArrowRight className="h-4 w-4 ml-1" />
                     </a>
                   </Button>
                 </CardFooter>

@@ -1,7 +1,9 @@
 import { Github, Linkedin, Mail, Leaf } from "lucide-react"
 import Link from "next/link"
+import { getI18n } from "@/locales/server"
 
-export default function Footer() {
+export default async function Footer() {
+  const t = await getI18n()
   const currentYear = new Date().getFullYear()
 
   return (
@@ -25,7 +27,7 @@ export default function Footer() {
               <p className="text-lg font-semibold flex items-center">
                 Olivier Kouassi <Leaf className="h-4 w-4 ml-1 text-sky-400" />
               </p>
-              <p className="text-sm text-sky-400">Frontend Developper</p>
+              <p className="text-sm text-sky-400">{t('footer.role')}</p>
             </div>
           </div>
 
@@ -53,7 +55,7 @@ export default function Footer() {
             </Link>
           </div>
 
-          <div className="text-sm text-sky-400">© {currentYear} Olivier Kouassi. All rights reserved.</div>
+          <div className="text-sm text-sky-400">© {currentYear} Olivier Kouassi. {t('footer.rights')}</div>
         </div>
       </div>
     </footer>
