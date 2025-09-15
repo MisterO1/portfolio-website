@@ -14,17 +14,19 @@ export const metadata = {
   },
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
   params
 }: Readonly<{
   children: React.ReactNode
-  params: {locale: string}
+  params: Promise<{locale: string}>
 }>) {
-  return (
+  const { locale } = await params
+
+  return (    
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <Providers locale={params.locale}>
+        <Providers locale={locale}>
           <ConditionalLayout>
             {children}
           </ConditionalLayout>
