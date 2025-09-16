@@ -22,7 +22,7 @@ function b4aHeaders() {
 // PUT /api/projects/[id] => update
 export async function PUT(request: Request, { params }: { params: { id: string } }) {
   try {
-    const { id } = params
+    const { id } = await params
     const body = await request.json()
     const res = await fetch(`${B4A_SERVER_URL}/classes/projects/${id}`, {
       method: 'PUT',
@@ -42,7 +42,7 @@ export async function PUT(request: Request, { params }: { params: { id: string }
 // DELETE /api/projects/[id] => delete
 export async function DELETE(request: Request, { params }: { params: { id: string } }) {
   try {
-    const { id } = params
+    const { id } = await params
     const res = await fetch(`${B4A_SERVER_URL}/classes/projects/${id}`, {
       method: 'DELETE',
       headers: b4aHeaders(),

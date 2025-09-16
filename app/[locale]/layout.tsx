@@ -2,6 +2,7 @@ import type React from "react"
 import "./globals.css"
 import { Inter } from "next/font/google"
 import ConditionalLayout from '@/components/ConditionalLayout'
+import { ThemeProvider } from "@/components/theme-provider"
 import { Providers } from "./providers"
 
 const inter = Inter({ subsets: ["latin"] })
@@ -27,9 +28,9 @@ export default async function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <Providers locale={locale}>
-          <ConditionalLayout>
-            {children}
-          </ConditionalLayout>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+              {children}
+          </ThemeProvider>
         </Providers>
       </body>
     </html>

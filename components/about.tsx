@@ -3,10 +3,10 @@
 import { motion } from "framer-motion"
 import { Card, CardContent } from "@/components/ui/card"
 import { Leaf } from "lucide-react"
-import { useI18n } from "@/locales/client"
+import { useScopedI18n } from "@/locales/client"
 
 export default function About() {
-  const t = useI18n()
+  const t = useScopedI18n("about")
   const skills = [
     { name: "Next", icon: <img src="/svg/next-js-seeklogo.svg" loading="lazy" alt="NextJs" title="NextJs" width="64" height="64" />, color: "bg-blue-100 dark:bg-blue-900" },
     { name: "React", icon: <img src="/svg/react-seeklogo.svg" loading="lazy" alt="React" title="React" width="64" height="64"/>, color: "bg-sky-100 dark:bg-sky-900" },
@@ -42,7 +42,7 @@ export default function About() {
         >
           <h2 className="text-3xl md:text-4xl font-bold text-slate-800 dark:text-white mb-4 flex items-center justify-center gap-2">
             <Leaf className="h-6 w-6 text-sky-500 dark:text-sky-400" />
-            {t('about.heading', { count: 1 })}
+            {t('heading')}
             <Leaf className="h-6 w-6 text-sky-500 dark:text-sky-400" />
           </h2>
           <div className="h-1 w-20 bg-sky-500 mx-auto"></div>
@@ -82,7 +82,7 @@ export default function About() {
             className="space-y-6"
           >
             <p className="text-lg text-slate-700 dark:text-slate-300">
-              {t('about.bio', { count: 1 })}
+              {t('bio')}
             </p>
             {/* <p className="text-lg text-slate-700 dark:text-slate-300">
               ...

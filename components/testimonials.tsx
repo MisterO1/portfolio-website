@@ -4,30 +4,30 @@ import { motion } from "framer-motion"
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Star } from "lucide-react"
-import { useI18n } from "@/locales/client"
+import { useScopedI18n } from "@/locales/client"
 
 export default function Testimonials() {
-  const t = useI18n()
+  const t = useScopedI18n()
   // Placeholder testimonials - these will be replaced with real ones as you gain clients
   const testimonials = [
     {
-      name: t('testimonials.future_client', { count: 1 }),
-      role: t('testimonials.role_founder', { count: 1 }),
-      content: t('testimonials.content_1', { count: 1 }),
+      name: t('future_client'),
+      role: t('role_founder'),
+      content: t('content_1'),
       avatar: "FC",
       stars: 5,
     },
     {
-      name: t('testimonials.future_client', { count: 1 }),
-      role: t('testimonials.role_pm', { count: 1 }),
-      content: t('testimonials.content_2', { count: 1 }),
+      name: t('future_client'),
+      role: t('role_pm'),
+      content: t('content_2'),
       avatar: "FC",
       stars: 5,
     },
     {
-      name: t('testimonials.future_client', { count: 1 }),
-      role: t('testimonials.role_cto', { count: 1 }),
-      content: t('testimonials.content_3', { count: 1 }),
+      name: t('future_client'),
+      role: t('role_cto'),
+      content: t('content_3'),
       avatar: "FC",
       stars: 5,
     },
@@ -43,9 +43,9 @@ export default function Testimonials() {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-800 dark:text-white mb-4">{t('testimonials.heading', { count: 1 })}</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-800 dark:text-white mb-4">{t('heading')}</h2>
           <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
-            {t('testimonials.intro', { count: 1 })}
+            {t('intro')}
           </p>
           <div className="h-1 w-20 bg-emerald-500 mx-auto mt-4"></div>
         </motion.div>

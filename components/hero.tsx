@@ -4,10 +4,10 @@ import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
 import { useState, useEffect } from "react"
 import { Leaf } from "lucide-react"
-import { useI18n } from "@/locales/client"
+import { useScopedI18n } from "@/locales/client"
 
 export default function Hero() {
-  const t = useI18n()
+  const t = useScopedI18n("hero")
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [isMounted, setIsMounted] = useState(false)
   const [dimensions, setDimensions] = useState({ width: 1200, height: 800 })
@@ -105,12 +105,12 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.3 }}
           >
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 drop-shadow-lg">
-              {t('hero.title_prefix', { count: 1 })}
-              <span className="text-sky-300">{t('hero.title_stack', { count: 1 })}</span>
+              {t('title_prefix')}
+              <span className="text-sky-300">{t('title_stack')}</span>
             </h1>
 
             <p className="text-xl md:text-2xl text-slate-200 max-w-3xl mx-auto mb-8 drop-shadow">
-              {t('hero.subtitle', { count: 1 })}
+              {t('subtitle')}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -119,7 +119,7 @@ export default function Hero() {
                 onClick={scrollToContact}
                 className="bg-sky-500 hover:bg-sky-700 text-white border-2 border-sky-500"
               >
-                {t('hero.cta_hire', { count: 1 })}
+                {t('cta_hire')}
               </Button>
               <Button
                 size="lg"
@@ -127,7 +127,7 @@ export default function Hero() {
                 onClick={scrollToProjects}
                 className="border-2 border-sky-300 text-foreground"
               >
-                {t('hero.cta_projects', { count: 1 })}
+                {t('cta_projects')}
               </Button>
             </div>
           </motion.div>

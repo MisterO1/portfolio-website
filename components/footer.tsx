@@ -1,10 +1,9 @@
 import { Github, Linkedin, Mail, Leaf } from "lucide-react"
 import Link from "next/link"
-import { getI18n } from "@/locales/server"
+import { getScopedI18n } from "@/locales/server"
 
 export default async function Footer() {
-  const t = await getI18n()
-  const currentYear = new Date().getFullYear()
+  const t = await getScopedI18n("footer")
 
   return (
     <footer className="py-8 bg-sky-900 text-slate-300 relative overflow-hidden">
@@ -22,12 +21,12 @@ export default async function Footer() {
       <div className="container mx-auto px-4 relative z-10">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-4 md:mb-0 flex items-center gap-3">
-            <img src="/images/dev.png" alt="Stephen Kihuni" className="h-10 w-10 rounded-md" />
+            <img src="/images/dev.png" alt="Olivier Kouassi" className="h-10 w-10 rounded-md" />
             <div>
               <p className="text-lg font-semibold flex items-center">
                 Olivier Kouassi <Leaf className="h-4 w-4 ml-1 text-sky-400" />
               </p>
-              <p className="text-sm text-sky-400">{t('footer.role')}</p>
+              <p className="text-sm text-sky-400">{t('role')}</p>
             </div>
           </div>
 
@@ -55,7 +54,7 @@ export default async function Footer() {
             </Link>
           </div>
 
-          <div className="text-sm text-sky-400">© {currentYear} Olivier Kouassi. {t('footer.rights')}</div>
+          <div className="text-sm text-sky-400">© 2025 Olivier Kouassi. {t('rights')}</div>
         </div>
       </div>
     </footer>

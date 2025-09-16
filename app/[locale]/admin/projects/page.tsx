@@ -193,7 +193,7 @@ export default function AdminProjectsPage() {
               </div>
             </div>
             {imagePreview && (
-              <img src={imagePreview} alt="preview" className="max-h-48 rounded border" />
+              <img src={imagePreview} alt="preview" className="max-h-48 border" />
             )}
             {error && <p className="text-red-600">{error}</p>}
             <div className="flex gap-2">

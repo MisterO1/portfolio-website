@@ -8,12 +8,12 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent } from "@/components/ui/card"
-import { Github, Linkedin, Mail, FileText } from "lucide-react"
+import { Github, Linkedin, Mail } from "lucide-react"
 import Link from "next/link"
-import { useI18n } from "@/locales/client"
+import { useScopedI18n } from "@/locales/client"
 
 export default function Contact() {
-  const t = useI18n()
+  const t = useScopedI18n("contact")
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -52,9 +52,9 @@ export default function Contact() {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-800 dark:text-white mb-4">{t('contact.heading', { count: 1 })}</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-800 dark:text-white mb-4">{t('heading')}</h2>
           <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
-            {t('contact.intro', { count: 1 })}
+            {t('intro')}
           </p>
           <div className="h-1 w-20 bg-sky-500 mx-auto mt-4"></div>
         </motion.div>
@@ -68,7 +68,7 @@ export default function Contact() {
           >
             <Card className="border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 h-full">
               <CardContent className="p-6">
-                <h3 className="text-2xl font-bold text-slate-800 dark:text-white mb-6">{t('contact.info_heading', { count: 1 })}</h3>
+                <h3 className="text-2xl font-bold text-slate-800 dark:text-white mb-6">{t('info_heading')}</h3>
 
                 <div className="space-y-6">
                   <div className="flex items-center gap-4">
@@ -76,13 +76,13 @@ export default function Contact() {
                       <Mail className="h-6 w-6 text-sky-600 dark:text-sky-400" />
                     </div>
                     <div>
-                      <p className="text-sm text-slate-500 dark:text-slate-400">{t('contact.email_label', { count: 1 })}</p>
+                      <p className="text-sm text-slate-500 dark:text-slate-400">{t('email_label')}</p>
                       <p className="text-slate-800 dark:text-white font-medium">kouassiolivier18@gmail.com</p>
                     </div>
                   </div>
 
                   <div className="pt-6 border-t border-slate-200 dark:border-slate-700">
-                    <h4 className="text-lg font-semibold text-slate-800 dark:text-white mb-4">{t('contact.connect_heading', { count: 1 })}</h4>
+                    <h4 className="text-lg font-semibold text-slate-800 dark:text-white mb-4">{t('connect_heading')}</h4>
                     <div className="flex gap-4">
                       <Link
                         href="https://www.linkedin.com/in/olivier-kouassi-a5abb616a/"
@@ -122,13 +122,13 @@ export default function Contact() {
           >
             <Card className="border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900">
               <CardContent className="p-6">
-                <h3 className="text-2xl font-bold text-slate-800 dark:text-white mb-6">{t('contact.form_heading', { count: 1 })}</h3>
+                <h3 className="text-2xl font-bold text-slate-800 dark:text-white mb-6">{t('form_heading')}</h3>
 
                 {submitted ? (
                   <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-900 rounded-lg p-4 text-center">
-                    <h4 className="text-blue-800 dark:text-blue-400 font-medium text-lg mb-2">{t('contact.success_title', { count: 1 })}</h4>
+                    <h4 className="text-blue-800 dark:text-blue-400 font-medium text-lg mb-2">{t('success_title')}</h4>
                     <p className="text-blue-700 dark:text-blue-300">
-                      {t('contact.success_text', { count: 1 })}
+                      {t('success_text')}
                     </p>
                   </div>
                 ) : (
@@ -138,14 +138,14 @@ export default function Contact() {
                         htmlFor="name"
                         className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1"
                       >
-                        {t('contact.fields.name_label', { count: 1 })}
+                        {t('fields.name_label')}
                       </label>
                       <Input
                         id="name"
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
-                        placeholder={t('contact.fields.name_placeholder', { count: 1 })}
+                        placeholder={t('fields.name_placeholder')}
                         required
                         autoComplete="given-name"
                         className="bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700"
@@ -157,7 +157,7 @@ export default function Contact() {
                         htmlFor="email"
                         className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1"
                       >
-                        {t('contact.fields.email_label', { count: 1 })}
+                        {t('fields.email_label')}
                       </label>
                       <Input
                         id="email"
@@ -165,7 +165,7 @@ export default function Contact() {
                         type="email"
                         value={formData.email}
                         onChange={handleChange}
-                        placeholder={t('contact.fields.email_placeholder', { count: 1 })}
+                        placeholder={t('fields.email_placeholder')}
                         required
                         autoComplete="off"
                         className="bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700"
@@ -177,14 +177,14 @@ export default function Contact() {
                         htmlFor="message"
                         className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1"
                       >
-                        {t('contact.fields.message_label', { count: 1 })}
+                        {t('fields.message_label')}
                       </label>
                       <Textarea
                         id="message"
                         name="message"
                         value={formData.message}
                         onChange={handleChange}
-                        placeholder={t('contact.fields.message_placeholder', { count: 1 })}
+                        placeholder={t('fields.message_placeholder')}
                         required
                         className="min-h-[150px] bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700"
                       />
@@ -195,7 +195,7 @@ export default function Contact() {
                       className="w-full bg-sky-600 hover:bg-sky-700 text-white"
                       disabled={isSubmitting}
                     >
-                      {isSubmitting ? t('contact.sending', { count: 1 }) : t('contact.send', { count: 1 })}
+                      {isSubmitting ? t('sending') : t('send')}
                     </Button>
                   </form>
                 )}

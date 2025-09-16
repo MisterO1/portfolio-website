@@ -33,33 +33,6 @@ export default {
     },
   },
 
-  services: {
-    heading: 'Services Offered',
-    intro:
-      'Specialized backend development services to help your business build robust and scalable systems.',
-    items: {
-      django_api_title: 'Django REST API Development',
-      django_api_desc:
-        'Custom API development with Django REST Framework, following best practices for security, performance, and maintainability.',
-      auth_title: 'API Authentication (JWT/OAuth2)',
-      auth_desc:
-        'Implement secure authentication systems using industry-standard protocols like JWT and OAuth2.',
-      db_title: 'Database Design & Optimization',
-      db_desc:
-        'Design efficient database schemas and optimize queries for PostgreSQL, MySQL, and other database systems.',
-      docker_title: 'Dockerization & CI/CD Setup',
-      docker_desc:
-        'Containerize your applications with Docker and set up continuous integration and deployment pipelines.',
-      cloud_title: 'Cloud Deployment',
-      cloud_desc:
-        'Deploy your applications to Heroku, AWS, or Render with proper configuration and monitoring.',
-      bugfix_title: 'Bug Fixing & Backend Refactoring',
-      bugfix_desc:
-        'Identify and fix bugs in existing systems, and refactor code for better performance and maintainability.',
-    },
-    cta: "Let's Work Together",
-  },
-
   projects: {
     heading: 'Projects',
     intro:
@@ -95,40 +68,6 @@ export default {
     },
     sending: 'Sending...',
     send: 'Send Message',
-  },
-
-  testimonials: {
-    heading: 'Testimonials',
-    intro:
-      "What clients say about working with me. This section will be updated as you complete projects.",
-    future_client: 'Future Client',
-    role_founder: 'Tech Startup Founder',
-    role_pm: 'Product Manager',
-    role_cto: 'CTO',
-    content_1:
-      "This section will showcase feedback from satisfied clients who have worked with you. As you complete projects, you'll add real testimonials here.",
-    content_2:
-      'Client testimonials build trust and demonstrate your ability to deliver quality work. This placeholder will be replaced with actual client feedback.',
-    content_3:
-      'Screenshots of feedback, quotes from Upwork/Fiverr clients, or even short audio/video praise can be added here as you gain more experience.',
-  },
-
-  blog: {
-    heading: 'Blog & Case Studies',
-    intro:
-      'Technical articles and case studies to share knowledge and demonstrate expertise.',
-    read_more: 'Read more',
-    coming_soon: 'Coming Soon',
-    post_1_title: 'How I Built a Doctor Booking API With Django + JWT',
-    post_1_desc:
-      'A detailed walkthrough of building a secure appointment booking system with Django REST Framework and JWT authentication.',
-    post_2_title: 'A Step-by-Step Guide to Deploying Django on Render With Docker',
-    post_2_desc:
-      'Learn how to containerize your Django application and deploy it to Render with proper configuration and monitoring.',
-    post_3_title:
-      'My Experience Contributing to an Open Source API for Collaboration',
-    post_3_desc:
-      'Insights and lessons learned from contributing to open source projects in the Django ecosystem.',
   },
 
   footer: {
