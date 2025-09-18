@@ -27,7 +27,7 @@ export default function LocaleToggle({ isScrolled }: LocaleToggleProps ){
       className={`rounded-full ${isScrolled ? "text-slate-600 dark:text-foreground" : "text-accent-foreground"}`}
       aria-label="Toggle locale"
     >
-      <Globe className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+      <Globe className="h-5 w-5" />
     </Button>
   )
 }
