@@ -1,11 +1,11 @@
 'use client';
 
+import '@/lib/parseConfig';
 import type React from "react";
 import Link from 'next/link';
 import ThemeToggle from '@/components/theme-toggle';
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import '@/lib/parseConfig';
 import Parse from 'parse';
 
 export default function AdminLayout({
