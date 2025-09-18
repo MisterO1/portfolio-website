@@ -14,17 +14,20 @@ import { useScopedI18n } from "@/locales/client"
 
 export default function Contact() {
   const t = useScopedI18n("contact")
-  const [formDatas, setFormDatas] = useState({
+  const access_key: string = "7cba3acc-6d19-4ae5-8bff-28f9d89d4b0d"
+  const [formData, setformData] = useState({
     name: "",
     email: "",
     message: "",
+    access_key,
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [errors, setErrors] = useState<{ [key: string]: string }>({})
-  // const [isError, setIsError] = useState(true)
-  const isError = (): boolean => {
-    return Object.values(errors).some((error) => error !== "")
+  const [isError, setIsError] = useState(true)
+  const updateIsError = (errors: { [key: string]: string }): void => {
+    const t = Object.values(errors).some((error) => error !== "")
+    setIsError(t)
   }
 
   const inputRefs = {
@@ -41,8 +44,8 @@ export default function Contact() {
   const shake = (field: keyof typeof inputRefs) => {
     const ref = inputRefs[field].current
     if (ref) {
-      ref.classList.add("shake")
-      setTimeout(() => ref.classList.remove("shake"), 500)
+      ref.classList.add("animate-shake")
+      setTimeout(() => ref.classList.remove("animate-shake"), 300)
     }
   }
   // Validation des champs
@@ -66,10 +69,13 @@ export default function Contact() {
     }
     return ""
   }
-// Handle message errors
+  // Handle message errors
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
-    setFormDatas((prev) => ({ ...prev, [name]: value }))
+    setformData((prev) => ({ ...prev, [name]: value }))
+    const errorMsg = validateField(name, value)
+    setErrors((prev) => ({ ...prev, [name]: errorMsg }))
+    updateIsError({...errors, [name]: errorMsg})
   }
   // Handle message errors
   const handleBlur = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -79,17 +85,11 @@ export default function Contact() {
     if (errorMsg) {
       shake(name as keyof typeof inputRefs)
     }
-    console.log(errors)
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-
-    const formData = new FormData(e.target as HTMLFormElement)
-    console.log("formData", formData.values())
-    console.log("formData", formData.keys())
-    console.log("formDatas", formDatas)
 
     // Validation before submission
     const newErrors: typeof errors = {}
@@ -105,10 +105,7 @@ export default function Contact() {
       setIsSubmitting(false)
       return
     }
-
-    formData.append("access_key", "7cba3acc-6d19-4ae5-8bff-28f9d89d4b0d")
-    const object = Object.fromEntries(formData.entries())
-    const json = JSON.stringify(object)
+    const json = JSON.stringify(formData)
 
     const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
@@ -120,9 +117,8 @@ export default function Contact() {
     });
     const result = await res.json();
     if (result.success) {
-        console.log(result);
         setSubmitted(true);
-        setFormDatas({ name: "", email: "", message: "" })
+        setformData({ name: "", email: "", message: "", access_key,})
     }
 
     setIsSubmitting(false)
@@ -232,13 +228,13 @@ export default function Contact() {
                         id="name"
                         name="name"
                         ref={inputRefs.name}
-                        value={formDatas.name}
+                        value={formData.name}
                         onBlur={handleBlur}
                         onChange={handleChange}
                         placeholder={t('fields.name_placeholder')}
                         required
                         autoComplete="given-name"
-                        className={`bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 ${errors.name ? "border-red-500 outline-red-500" : ""}`}
+                        className={`bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 ${errors.name ? "border-red-500 outline outline-red-500" : ""}`}
                       />
                       {errors.name && (
                         <motion.div
@@ -263,13 +259,13 @@ export default function Contact() {
                         name="email"
                         type="email"
                         ref={inputRefs.email}
-                        value={formDatas.email}
+                        value={formData.email}
                         onBlur={handleBlur}
                         onChange={handleChange}
                         placeholder={t('fields.email_placeholder')}
                         required
                         autoComplete="off"
-                        className={`bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 ${errors.email ? "border-red-500 outline-red-500" : ""}`}
+                        className={`bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 ${errors.email ? "border-red-500 outline outline-red-500" : ""}`}
                       />
                       {errors.email && (
                         <motion.div
@@ -293,12 +289,12 @@ export default function Contact() {
                         id="message"
                         name="message"
                         ref={inputRefs.message}
-                        value={formDatas.message}
+                        value={formData.message}
                         onBlur={handleBlur}
                         onChange={handleChange}
                         placeholder={t('fields.message_placeholder')}
                         required
-                        className={`min-h-[150px] bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 ${errors.message ? "border-red-500 outline-red-500" : ""}`}
+                        className={`min-h-[150px] bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 ${errors.message ? "border-red-500 outline outline-red-500" : ""}`}
                       />
                       {errors.message && (
                         <motion.div
@@ -314,7 +310,7 @@ export default function Contact() {
                     <Button
                       type="submit"
                       className="w-full bg-sky-600 hover:bg-sky-700 text-white"
-                      disabled={isSubmitting || isError()}
+                      disabled={isSubmitting || isError}
                     >
                       {isSubmitting ? t('sending') : t('send')}
                     </Button>
