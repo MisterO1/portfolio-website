@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useState, useRef } from "react"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -14,27 +14,98 @@ import { useScopedI18n } from "@/locales/client"
 
 export default function Contact() {
   const t = useScopedI18n("contact")
-  const [formData, setFormData] = useState({
+  const [formDatas, setFormDatas] = useState({
     name: "",
     email: "",
     message: "",
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
+  const [errors, setErrors] = useState<{ [key: string]: string }>({})
+  // const [isError, setIsError] = useState(true)
+  const isError = (): boolean => {
+    return Object.values(errors).some((error) => error !== "")
+  }
 
+  const inputRefs = {
+    name: useRef<HTMLInputElement>(null),
+    email: useRef<HTMLInputElement>(null),
+    message: useRef<HTMLTextAreaElement>(null),
+  }
+
+  // Regex pour validation
+  const nameRegex = /^[A-Za-zÀ-ÿ' -]{2,}$/ // Lettres, espaces, tirets, apostrophes
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+  // Animation vibration
+  const shake = (field: keyof typeof inputRefs) => {
+    const ref = inputRefs[field].current
+    if (ref) {
+      ref.classList.add("shake")
+      setTimeout(() => ref.classList.remove("shake"), 500)
+    }
+  }
+  // Validation des champs
+  const validateField = (name: string, value: string) => {
+    switch (name) {
+      case "name":
+        if (!nameRegex.test(value)){
+          return t("fields.name_error")
+        }
+        break
+      case "email":
+        if (!emailRegex.test(value)){
+          return t("fields.email_error")
+        }
+        break
+      case "message":
+        if (value.trim().length < 10){
+          return t("fields.message_error")
+        }
+        break
+    }
+    return ""
+  }
+// Handle message errors
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
+    setFormDatas((prev) => ({ ...prev, [name]: value }))
+  }
+  // Handle message errors
+  const handleBlur = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target
+    const errorMsg = validateField(name, value)
+    setErrors((prev) => ({ ...prev, [name]: errorMsg }))
+    if (errorMsg) {
+      shake(name as keyof typeof inputRefs)
+    }
+    console.log(errors)
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
 
-    // Simulate form submission
-    // await new Promise((resolve) => setTimeout(resolve, 1500))
-
     const formData = new FormData(e.target as HTMLFormElement)
+    console.log("formData", formData.values())
+    console.log("formData", formData.keys())
+    console.log("formDatas", formDatas)
+
+    // Validation before submission
+    const newErrors: typeof errors = {}
+    Object.entries(formData).forEach(([key, value]) => {
+      const errorMsg = validateField(key, value)
+      if (errorMsg) {
+        newErrors[key] = errorMsg
+        shake(key as keyof typeof inputRefs)
+      }
+    })
+    setErrors(newErrors)
+    if (Object.keys(newErrors).length > 0) {
+      setIsSubmitting(false)
+      return
+    }
+
     formData.append("access_key", "7cba3acc-6d19-4ae5-8bff-28f9d89d4b0d")
     const object = Object.fromEntries(formData.entries())
     const json = JSON.stringify(object)
@@ -51,14 +122,10 @@ export default function Contact() {
     if (result.success) {
         console.log(result);
         setSubmitted(true);
-        // (e.target as HTMLFormElement).reset()
-        setFormData({ name: "", email: "", message: "" })
+        setFormDatas({ name: "", email: "", message: "" })
     }
 
     setIsSubmitting(false)
-    
-
-
     // Reset the submitted state after 10 seconds
     setTimeout(() => setSubmitted(false), 10000)
   }
@@ -164,13 +231,24 @@ export default function Contact() {
                       <Input
                         id="name"
                         name="name"
-                        value={formData.name}
+                        ref={inputRefs.name}
+                        value={formDatas.name}
+                        onBlur={handleBlur}
                         onChange={handleChange}
                         placeholder={t('fields.name_placeholder')}
                         required
                         autoComplete="given-name"
-                        className="bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700"
+                        className={`bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 ${errors.name ? "border-red-500 outline-red-500" : ""}`}
                       />
+                      {errors.name && (
+                        <motion.div
+                          initial={{ opacity: 0, y: -5 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          className="text-red-500 text-xs mt-1"
+                        >
+                          {errors.name}
+                        </motion.div>
+                      )}
                     </div>
 
                     <div>
@@ -184,13 +262,24 @@ export default function Contact() {
                         id="email"
                         name="email"
                         type="email"
-                        value={formData.email}
+                        ref={inputRefs.email}
+                        value={formDatas.email}
+                        onBlur={handleBlur}
                         onChange={handleChange}
                         placeholder={t('fields.email_placeholder')}
                         required
                         autoComplete="off"
-                        className="bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700"
+                        className={`bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 ${errors.email ? "border-red-500 outline-red-500" : ""}`}
                       />
+                      {errors.email && (
+                        <motion.div
+                          initial={{ opacity: 0, y: -5 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          className="text-red-500 text-xs mt-1"
+                        >
+                          {errors.email}
+                        </motion.div>
+                      )}
                     </div>
 
                     <div>
@@ -203,18 +292,29 @@ export default function Contact() {
                       <Textarea
                         id="message"
                         name="message"
-                        value={formData.message}
+                        ref={inputRefs.message}
+                        value={formDatas.message}
+                        onBlur={handleBlur}
                         onChange={handleChange}
                         placeholder={t('fields.message_placeholder')}
                         required
-                        className="min-h-[150px] bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700"
+                        className={`min-h-[150px] bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 ${errors.message ? "border-red-500 outline-red-500" : ""}`}
                       />
+                      {errors.message && (
+                        <motion.div
+                          initial={{ opacity: 0, y: -5 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          className="text-red-500 text-xs mt-1"
+                        >
+                          {errors.message}
+                        </motion.div>
+                      )}
                     </div>
 
                     <Button
                       type="submit"
                       className="w-full bg-sky-600 hover:bg-sky-700 text-white"
-                      disabled={isSubmitting}
+                      disabled={isSubmitting || isError()}
                     >
                       {isSubmitting ? t('sending') : t('send')}
                     </Button>

@@ -61,10 +61,13 @@ export default {
     fields: {
       name_label: 'Nom',
       name_placeholder: 'Votre nom',
+      name_error: 'Nom invalid ! (lettres uniquement)',
       email_label: 'Email',
       email_placeholder: 'votre.email@exemple.com',
+      email_error: 'Adresse email invalide !',
       message_label: 'Message',
       message_placeholder: 'Parlez-moi de votre projet...',
+      message_error: 'Message trop court ! (min 10 caractères)',
     },
     sending: 'Envoi...',
     send: 'Envoyer le message',
