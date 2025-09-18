@@ -32,14 +32,35 @@ export default function Contact() {
     setIsSubmitting(true)
 
     // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500))
+    // await new Promise((resolve) => setTimeout(resolve, 1500))
+
+    const formData = new FormData(e.target as HTMLFormElement)
+    formData.append("access_key", "7cba3acc-6d19-4ae5-8bff-28f9d89d4b0d")
+    const object = Object.fromEntries(formData.entries())
+    const json = JSON.stringify(object)
+
+    const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: json
+    });
+    const result = await res.json();
+    if (result.success) {
+        console.log(result);
+        setSubmitted(true);
+        // (e.target as HTMLFormElement).reset()
+        setFormData({ name: "", email: "", message: "" })
+    }
 
     setIsSubmitting(false)
-    setSubmitted(true)
-    setFormData({ name: "", email: "", message: "" })
+    
 
-    // Reset the submitted state after 5 seconds
-    setTimeout(() => setSubmitted(false), 5000)
+
+    // Reset the submitted state after 10 seconds
+    setTimeout(() => setSubmitted(false), 10000)
   }
 
   return (
