@@ -18,7 +18,7 @@ type Project = {
   imageUrl: string
 }
 
-export default function AdminProjectsPage() {
+export default function ProjectsManager() {
   const [projects, setProjects] = useState<Project[]>([])
   const [selectedId, setSelectedId] = useState<string | null>(null)
   const [project, setProject] = useState<Project>({ title: '', description: '', techStack: [], github: '', demo: '', video: '', imageUrl: '' })
