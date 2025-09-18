@@ -86,14 +86,6 @@ const config = {
         sm: "calc(var(--radius) - 4px)",
       },
       keyframes: {
-        "accordion-down": {
-          from: { height: "0" },
-          to: { height: "var(--radix-accordion-content-height)" },
-        },
-        "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: "0" },
-        },
         float: {
           "0%, 100%": { transform: "translateY(0)" },
           "50%": { transform: "translateY(-10px)" },
@@ -102,15 +94,21 @@ const config = {
           "0%, 100%": { transform: "rotate(-3deg)" },
           "50%": { transform: "rotate(3deg)" },
         },
+        shake: {
+          "0%" : { transform: "translateX(0)" },
+          "20%" : { transform: "translateX(-6px)" },
+          "40%" : { transform: "translateX(6px)" },
+          "60%" : { transform: "translateX(-6px)" },
+          "80%" : { transform: "translateX(6px)" },
+          "100%" : { transform: "translateX(0)" },
+        }
       },
       animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
         float: "float 6s ease-in-out infinite",
         sway: "sway 6s ease-in-out infinite",
+        shake: "shake 0.3s ease-in-out",
       },
       backgroundImage: {
-        // "jungle-gradient": "linear-gradient(to bottom, #171c09, #2a3212, #3a4419)",
         "sky-gradient": "linear-gradient(to bottom,rgb(9, 23, 28),rgb(18, 44, 50),rgb(25, 51, 68))",
       },
     },

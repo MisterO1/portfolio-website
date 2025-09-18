@@ -79,20 +79,6 @@
 .bg-sky-gradient {
   background: linear-gradient(to bottom, hsl(222 84% 4.9%), hsl(197, 76%, 15%), hsl(182, 76%, 25%));
 }
-
-/* Animation for shaking effect on error */
-.shake {
-  animation: shake 0.3s;
-}
-@keyframes shake {
-  0% { transform: translateX(0); }
-  20% { transform: translateX(-6px); }
-  40% { transform: translateX(6px); }
-  60% { transform: translateX(-6px); }
-  80% { transform: translateX(6px); }
-  100% { transform: translateX(0); }
-}
-
 /* Enhanced scrollbar with emerald theme colors */
 ::-webkit-scrollbar {
   width: 8px;
