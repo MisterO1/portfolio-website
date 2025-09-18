@@ -36,7 +36,7 @@ export default {
   projects: {
     heading: 'Projects',
     intro:
-      'A showcase of my backend development work, featuring Django REST APIs and related technologies.',
+      'A showcase of my recent works. Want to see more? Visit my GitHub profile.',
     loading: 'Loading projects...',
     error_fetch: 'Failed to fetch projects',
     error_unexpected: 'Unexpected error',
