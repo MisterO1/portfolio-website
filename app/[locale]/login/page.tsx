@@ -4,6 +4,8 @@ import '@/lib/parseConfig';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Parse from 'parse';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -26,26 +28,20 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="max-w-md w-full space-y-8 p-8 bg-white rounded-lg shadow">
+    <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-sky-900/30">
+      <div className="max-w-md w-full space-y-8 p-8 bg-white dark:bg-slate-900 rounded-lg shadow">
         <h2 className="text-2xl font-bold text-center">Connexion Admin</h2>
-        
-        {error && (
-          <div className="bg-red-100 text-red-700 p-3 rounded">
-            {error}
-          </div>
-        )}
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
             <label htmlFor="username" className="block text-sm font-medium">
               Nom d'utilisateur
             </label>
-            <input
+            <Input
               type="text"
               name="username"
               required
-              className="mt-1 block w-full rounded border p-2"
+              className="mt-1 p-2 bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700"
             />
           </div>
 
@@ -53,21 +49,27 @@ export default function LoginPage() {
             <label htmlFor="password" className="block text-sm font-medium">
               Mot de passe
             </label>
-            <input
+            <Input
               type="password"
               name="password"
               required
-              className="mt-1 block w-full rounded border p-2"
+              className="mt-1 p-2 bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700"
             />
           </div>
 
-          <button
+          <Button
             type="submit"
-            className="w-full bg-blue-600 text-white rounded p-2 hover:bg-blue-700"
+            className="w-full bg-sky-600 text-white rounded p-2 hover:bg-sky-700"
           >
             Se connecter
-          </button>
+          </Button>
         </form>
+
+        {error && (
+          <div className="bg-red-100 text-red-700 p-3 rounded">
+            {error}
+          </div>
+        )}
       </div>
     </div>
   );
