@@ -18,8 +18,8 @@ export default function Navbar() {
 
   const navItems : { name: NavItem, href: string}[] = [
     { name: "home", href: "#" },
-    { name: "about", href: "#about" },
     { name: "projects", href: "#projects" },
+    { name: "about", href: "#about" },
     { name: "contact", href: "#contact" },
   ]
 
