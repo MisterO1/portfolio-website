@@ -22,7 +22,7 @@ export default function Projects() {
         const data = await res.json()
         if (!res.ok) throw new Error(data?.error || t('error_fetch'))
         if (!isMounted) return
-        setProjects(Array.isArray(data) ? data : [])
+        setProjects(Array.isArray(data) ? data.filter((project) => project.toDisplay === true) : [])
       } catch (e: any) {
         if (!isMounted) return
         setError(e?.message || t('error_unexpected'))
